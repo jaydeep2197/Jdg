@@ -1,0 +1,649 @@
+/* --- મૂળભૂત સ્ટાઇલ અને રીસેટ --- */
+* {
+    box-sizing: border-box; /* પેડિંગ અને બોર્ડરને પહોળાઈ અને ઊંચાઈમાં સમાવવા */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Noto Sans Gujarati', sans-serif; /* ગુજરાતી ફોન્ટ */
+    line-height: 1.5;
+    background-color: #f4f7f6; /* હળવો બેકગ્રાઉન્ડ કલર */
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px; /* મહત્તમ પહોળાઈ */
+    margin: auto; /* મધ્યમાં લાવવા */
+    padding: 0 15px; /* બાજુઓથી થોડું પેડિંગ */
+    overflow: hidden; /* Clear floats - જો જરૂર હોય તો */
+}
+
+a {
+    text-decoration: none; /* લિંક નીચેની લાઈન દૂર કરવા */
+    color: #007bff; /* લિંક કલર */
+    transition: color 0.3s ease; /* હોવર પર કલર ટ્રાન્ઝિશન */
+}
+
+a:hover {
+    color: #0056b3; /* હોવર પર ડાર્ક કલર */
+}
+
+h1, h2, h3, h4, h5 {
+    color: #1a5f7a; /* હેડિંગ કલર */
+    margin-bottom: 15px;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+/* --- હેડર અને ફૂટર --- */
+header {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+background-size: 400% 400%;
+animation: gradientBG 15s ease infinite;
+color: white;
+padding: 30px;
+text-align: center;
+font-size: 3.2em;
+font-weight: bold;
+text-shadow: 6px 6px 4px rgba(0, 0, 0, 0.4); /* halka black shadow */
+border-radius: 12px; /* થોડું વધારે ગોળ */
+font-family: 'Poppins', sans-serif; /* Stylish modern font */
+letter-spacing: 1px; /* Thoda gap har letter ke bich */
+}
+
+@keyframes gradientBG {
+
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+header nav ul {
+    display: block;
+    text-align: right;
+}
+
+header nav ul li {
+    list-style-type: disc; /* Bullet laavavu */
+    margin-right: 2px; /* Andar space */
+}
+
+header nav ul li a {
+    color: white;
+    font-size: 0.3em;
+    text-decoration: none;
+}
+
+header nav ul li a:hover {
+    color: yellow;
+}
+
+footer {
+    background: linear-gradient(-45deg, #23d5ab, #23a6d5, #e73c7e, #ee7752);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* --- હીરો સેક્શન (હોમપેજ) --- */
+.hero {
+    background: linear-gradient(135deg, #6dd5ed, #2193b0); /* નવો ગ્રેડિયન્ટ */
+    color: #fff;
+    text-shadow: 6px 6px 4px rgba(0, 0, 0, 0.4); /* halka black shadow */
+    letter-spacing: 1px; /* Thoda gap har letter ke bich */
+    padding: 60px 0;
+    text-align: center;
+    margin-bottom: 30px;
+    border-radius: 12px; /* થોડું વધારે ગોળ */
+    border: 2px solid #ffffff50; /* હલકું સફેદ બોર્ડર */
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.3); /* નવો શેડો */
+    animation: heroFadeIn 2s ease-in-out; /* એનિમેશન લાગુ */
+    font-family: 'Poppins', sans-serif; /* નવો ફોન્ટ */
+}
+
+.hero h1 {
+    font-size: 3em;
+    margin-bottom: 15px;
+    color: #fff;
+    animation: slideInFromTop 1.5s ease-out; /* એડીશનલ એનિમેશન હેડિંગ માટે */
+}
+
+.hero p {
+    font-size: 1.2em;
+    color: #f8f9fa;
+    animation: slideInFromBottom 1.5s ease-out; /* પેરાગ્રાફ માટે એનિમેશન */
+}
+
+/* એનિમેશન કીફ્રેમ્સ */
+@keyframes heroFadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInFromTop {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* --- જનરેટર કાર્ડ્સ (ID Card, Bonafide) --- */
+/* મેં સુધારેલા HTML માં .generator-card ક્લાસનો ઉપયોગ કર્યો છે */
+.generator,
+.certificate {
+    padding: 20px 0;
+    margin-bottom: 30px;
+}
+
+.generator h2,
+.certificate h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 2em;
+    color: #1a5f7a;
+}
+
+.generator-card { /* ID Card અને Bonafide માટે સમાન સ્ટાઇલ */
+    display: block; /* આખા કાર્ડને ક્લિક કરી શકાય તેવું બનાવવા */
+    text-decoration: none; /* લિંક નીચેની લાઈન દૂર કરવા */
+    color: #333;
+    background: #e0f7fa; /* ખૂબ આછો ટીલ કલર */
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 20px auto;
+}
+
+.generator-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.generator-icon {
+    font-size: 3.5em; /* આઇકોન સાઈઝ */
+    margin-bottom: 10px;
+    color: #007bff; /* આઇકોન કલર */
+}
+
+.generator-card h3 {
+    margin-bottom: 10px;
+    color: #1a5f7a;
+    font-size: 1.3em;
+}
+
+.generator-card p {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 0; /* છેલ્લો પેરેગ્રાફ */
+}
+
+/* Responsive settings */
+@media (min-width: 768px) {
+    .generator-card {
+        max-width: 400px; /* Desktop par pan fix size */
+    }
+}
+
+
+/* --- મુખ્ય સેક્શન કાર્ડ્સ (હોમપેજ) --- */
+.sections {
+    padding: 20px 0;
+}
+
+.sections h4 { /* સુધારેલા HTML પ્રમાણે h4 */
+     text-align: center;
+     margin-bottom: 30px;
+     font-size: 1.8em; /* સાઈઝ ગોઠવી */
+     color: #1a5f7a;
+}
+
+
+.cards-container {
+    display: grid; /* ગ્રીડ લેઆઉટ */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* રિસ્પોન્સિવ ગ્રીડ */
+    gap: 25px; /* કાર્ડ્સ વચ્ચે જગ્યા */
+}
+ 
+
+.card {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 25px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* હોવર માટે ટ્રાન્ઝિશન */
+    display: block; /* લિંકને બ્લોક બનાવવા માટે */
+    color: #333; /* કાર્ડના ટેક્સ્ટનો કલર */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* ઉપર ખસેડવાનો ઇફેક્ટ */
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2); /* શેડો વધારવો */
+}
+
+.card-icon {
+    font-size: 3em; /* આઇકોન મોટો કરવા */
+    margin-bottom: 15px;
+    color: #1a5f7a; /* આઇકોનનો કલર */
+}
+
+.card h5 { /* સુધારેલા HTML પ્રમાણે h5 */
+    margin-bottom: 10px;
+    font-size: 1.3em; /* સાઈઝ ગોઠવી */
+    color: #1a5f7a;
+}
+
+.card p {
+    font-size: 1em; /* સાઈઝ ગોઠવી */
+    color: #555;
+    margin-bottom: 0; /* છેલ્લો પેરેગ્રાફ */
+}
+
+/* --- ફાઇલ લિસ્ટ સેક્શન (આંતરિક પેજ માટે) --- */
+.file-list-section {
+    background: #fff;
+    padding: 30px;
+    margin-top: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.file-list-section h2 {
+    margin-top: 0;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #1a5f7a;
+}
+
+.file-list {
+    list-style: none;
+    padding: 0;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 10px;
+    border-bottom: 1px solid #eee;
+    flex-wrap: wrap; /* મોબાઇલ માટે */
+    transition: background-color 0.2s ease;
+}
+
+.file-item:hover {
+    background-color: #f9f9f9; /* હોવર પર હળવો બેકગ્રાઉન્ડ */
+}
+
+.file-item:last-child {
+    border-bottom: none;
+}
+
+.file-icon {
+    font-size: 1.8em; /* આઇકોન સાઈઝ વધારી */
+    margin-right: 15px;
+    color: #007bff; /* ફાઇલ આઇકોન કલર */
+}
+
+.file-info {
+    flex-grow: 1; /* નામ અને સાઈઝ માટે વધુ જગ્યા */
+    margin-right: 15px;
+}
+
+.file-name {
+    font-weight: bold;
+    display: block; /* નવી લીટીમાં નામ */
+    margin-bottom: 3px; /* નામ અને સાઈઝ વચ્ચે જગ્યા */
+    color: #333;
+}
+
+.file-size {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.button {
+    background-color: #28a745; /* લીલો બટન કલર */
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+    margin-left: auto; /* બટનને જમણી બાજુ ખસેડવા */
+}
+
+.button:hover {
+    background-color: #218838; /* ડાર્ક લીલો હોવર કલર */
+}
+
+/* --- ફોટો ગેલેરી સેક્શન (આંતરિક પેજ માટે) --- */
+.photo-gallery-section {
+    background: #fff;
+    padding: 30px;
+    margin-top: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.photo-gallery-section h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #1a5f7a;
+}
+
+.photo-grid {
+    display: grid;
+    /* સ્ક્રીનની સાઈઝ પ્રમાણે કોલમની સંખ્યા ગોઠવો */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* રિસ્પોન્સિવ ગ્રીડ, નાના ફોટા માટે minmax ઘટાડ્યું */
+    gap: 15px; /* ફોટા વચ્ચે જગ્યા */
+}
+
+.photo-item {
+    border: 1px solid #ddd;
+    padding: 5px;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.photo-item:hover {
+     transform: scale(1.03); /* હોવર પર થોડો ઝૂમ ઇફેક્ટ */
+}
+
+.photo-item a {
+    display: block; /* સમગ્ર ઇમેજને ક્લિકેબલ બનાવવા */
+}
+
+.photo-item img {
+    display: block; /* વધારાની સ્પેસ દૂર કરવા */
+    width: 100%; /* કન્ટેનર જેટલી પહોળાઈ */
+    height: auto; /* ઊંચાઈ આપોઆપ ગોઠવાય */
+    border-radius: 2px;
+}
+
+
+/* --- રિસ્પોન્સિવનેસ --- */
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    header nav ul {
+        margin-top: 15px;
+        flex-direction: column; /* નાના સ્ક્રીન પર લિંક્સને કોલમમાં લાવવા */
+        align-items: center;
+    }
+     header nav ul li {
+        margin: 5px 0; /* નાના સ્ક્રીન પર લિંક્સ વચ્ચે જગ્યા */
+    }
+
+    .hero h1 {
+        font-size: 2em;
+    }
+    .hero p {
+        font-size: 1em;
+    }
+
+    .cards-container {
+        grid-template-columns: 1fr; /* નાના સ્ક્રીન પર કાર્ડ્સને એક કોલમમાં દર્શાવવા */
+    }
+
+    .generator-card,
+    .card {
+        padding: 20px; /* નાના સ્ક્રીન પર પેડિંગ ગોઠવ્યું */
+    }
+
+    .generator-icon,
+    .card-icon {
+         font-size: 3em; /* આઇકોન સાઈઝ ગોઠવી */
+    }
+
+    .file-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+     .file-icon {
+         margin-bottom: 10px;
+         font-size: 2em;
+     }
+     .file-info {
+        margin-right: 0;
+        margin-bottom: 10px;
+     }
+    .file-name {
+        font-size: 1.1em;
+    }
+    .file-size {
+        font-size: 0.9em;
+    }
+    .button {
+        width: 100%; /* નાના સ્ક્રીન પર બટનને આખી પહોળાઈ આપવા */
+        margin-left: 0;
+        margin-top: 5px;
+    }
+
+    .photo-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* નાના સ્ક્રીન માટે ફોટો ગ્રીડ ગોઠવી */
+    }
+}
+
+   .card-icon {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: auto;
+    height: 225px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+}
+
+.card-icon.excel {
+    background-image: url('excel-bg.png');
+}
+
+.card-icon.document {
+    background-image: url('document-bg.png');
+}
+
+.card-icon.pdf {
+    background-image: url('pdf-bg.png');
+}
+
+.card-icon.photo {
+    background-image: url('photo-bg.png');
+}
+  
+    .generator-icon {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: auto;
+    height: 225px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+}
+
+.generator-icon.idcard {
+    background-image: url('idcard-bg.png');
+}
+.generator-icon.bonafide {
+    background-image: url('cirtificate-bg.png');
+}
+  /* search-container ની સ્ટાઇલ */
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-left: 20px; /* નેવિગેશન આઇટમ્સથી જગ્યા આપવા માટે */
+}
+
+/* search-input ની સ્ટાઇલ */
+.search-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    font-size: 16px;
+}
+
+/* search-button ની સ્ટાઇલ */
+.search-button {
+    padding: 8px 12px;
+    background-color: #007bff; /* તમારી થીમ અનુસાર રંગ બદલો */
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.search-button:hover {
+    background-color: #0056b3; /* હોવર ઇફેક્ટ માટે રંગ */
+}
+
+/* જો તમે હેડરની અંદર સર્ચ કન્ટેનરને જમણી બાજુએ ગોઠવવા માંગતા હોવ તો */
+/*header .container {
+    display: flex;
+    justify-content: space-between; /* લોગો અને નેવિગેશનને ડાબી બાજુ અને સર્ચને જમણી બાજુ ધકેલશે */*/
+    align-items: center;
+}
+
+header nav ul {
+    /* જો તમે નેવિગેશન અને સર્ચ વચ્ચે જગ્યા ઇચ્છતા હોવ તો */
+    margin-right: auto;
+}
+ /* બ્લોગ વિભાગની સ્ટાઇલ */
+.blog {
+    padding: 40px 0;
+    text-align: center;
+}
+
+.blog h2 {
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    color: #333;
+}
+
+.blog-posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.blog-post {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: left;
+}
+
+.blog-post img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.blog-post h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.8em;
+    color: #007bff;
+}
+
+.blog-post h3 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.blog-post .post-meta {
+    color: #777;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+.blog-post p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.blog-post .read-more {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+.blog-post .read-more:hover {
+    background-color: #0056b3;
+}
+
+.view-all a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.view-all a:hover {
+    background-color: #1e7e34;
+}
+
+/* બ્લોગ પેજ માટે વધારાની સ્ટાઇલ (જો જરૂરી હોય તો) */
+.blog.container {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.blog.container h1 {
+    font-size: 3em;
+    color: #333;
+    margin-bottom: 40px;
+    text-align: center;
+}

@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jd Gyan Shala</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"> </head>
+
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Noto Sans Gujarati', Arial, sans-serif;
+      padding: 20px;
+      line-height: 1.6;
+      background-color: #f4f4f4;
+    }
+     /* --- મૂળભૂત સ્ટાઇલ અને રીસેટ --- */
+* {
+    box-sizing: border-box; /* પેડિંગ અને બોર્ડરને પહોળાઈ અને ઊંચાઈમાં સમાવવા */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Noto Sans Gujarati', sans-serif; /* ગુજરાતી ફોન્ટ */
+    line-height: 1.5;
+    background-color: #f4f7f6; /* હળવો બેકગ્રાઉન્ડ કલર */
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px; /* મહત્તમ પહોળાઈ */
+    margin: auto; /* મધ્યમાં લાવવા */
+    padding: 0 15px; /* બાજુઓથી થોડું પેડિંગ */
+    overflow: hidden; /* Clear floats - જો જરૂર હોય તો */
+}
+
+a {
+    text-decoration: none; /* લિંક નીચેની લાઈન દૂર કરવા */
+    color: #007bff; /* લિંક કલર */
+    transition: color 0.3s ease; /* હોવર પર કલર ટ્રાન્ઝિશન */
+}
+
+a:hover {
+    color: #0056b3; /* હોવર પર ડાર્ક કલર */
+}
+
+h1, h2, h3, h4, h5 {
+    color: #1a5f7a; /* હેડિંગ કલર */
+    margin-bottom: 15px;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+/* --- હેડર અને ફૂટર --- */
+header {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+background-size: 400% 400%;
+animation: gradientBG 15s ease infinite;
+color: white;
+padding: 30px;
+text-align: center;
+font-size: 3.2em;
+font-weight: bold;
+text-shadow: 6px 6px 4px rgba(0, 0, 0, 0.4); /* halka black shadow */
+border-radius: 12px; /* થોડું વધારે ગોળ */
+font-family: 'Poppins', sans-serif; /* Stylish modern font */
+letter-spacing: 1px; /* Thoda gap har letter ke bich */
+ /*animation: typing 4s steps(30) 1s 1 normal both, blinkCursor 0.7s infinite;*/
+}
+
+
+
+     
+@keyframes gradientBG {
+
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+  .logo-img {
+  max-height: 100px; /* Adjust as needed */
+  display: flex;
+  align-items: center; /* Vertically aligns items in the center */
+}
+
+.logo-img {
+  /* Optional image styles */
+  margin-right: 10px; /* Add some spacing between the image and text */
+}
+
+.logo-img span {
+  /* Optional text styles */
+}
+
+
+header nav ul {
+    display: block;
+    text-align: right;
+}
+
+header nav ul li {
+   /* list-style-type: disc; /* Bullet laavavu */
+    margin-right: 1px; /* Andar space */
+}
+
+header nav ul li a {
+    color: white;
+    font-size: 0.3em;
+    text-decoration: none;
+}
+
+header nav ul li a:hover {
+    color: yellow;
+}
+
+footer {
+    background: linear-gradient(-45deg, #23d5ab, #23a6d5, #e73c7e, #ee7752);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: white;
+    margin-top: 30px;
+    padding:30px auto;
+    bottom: 20px;
+    text-align: center;
+}
+
+/* --- હીરો સેક્શન (હોમપેજ) --- */
+.hero {
+    background: linear-gradient(135deg, #6dd5ed, #2193b0); /* નવો ગ્રેડિયન્ટ */
+    color: #fff;
+    text-shadow: 6px 6px 4px rgba(0, 0, 0, 0.4); /* halka black shadow */
+    letter-spacing: 1px; /* Thoda gap har letter ke bich */
+    padding: 60px 0;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 12px; /* થોડું વધારે ગોળ */
+    border: 2px solid #ffffff50; /* હલકું સફેદ બોર્ડર */
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.3); /* નવો શેડો */
+    animation: heroFadeIn 2s ease-in-out; /* એનિમેશન લાગુ */
+    font-family: 'Poppins', sans-serif; /* નવો ફોન્ટ */
+}
+
+.hero h1 {
+    font-size: 3em;
+    margin-bottom: 15px;
+    color: #fff;
+    animation: slideInFromTop 1.5s ease-out; /* એડીશનલ એનિમેશન હેડિંગ માટે */
+}
+
+.hero p {
+    font-size: 1.2em;
+    color: #f8f9fa;
+    animation: slideInFromBottom 1.5s ease-out; /* પેરાગ્રાફ માટે એનિમેશન */
+}
+
+/* એનિમેશન કીફ્રેમ્સ */
+@keyframes heroFadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInFromTop {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+    .excel-container {
+        max-width: auto; /* Slightly increased width for better readability */
+        margin: auto;
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+        color: black;
+        text-shadow: 6px 6px 4px rgba(0, 0, 0, 0.4); /* halka black shadow */
+        letter-spacing: 3px; /* Thoda gap har letter ke bich */
+        font-size: 3.2em;
+        /*font-weight: bold;*/
+        padding: 20px;
+        border-radius: 75px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .certificate {
+      background: white;
+      width: 210mm;
+      min-height: 190mm;
+      margin: 10px 20px;
+      padding: 20mm 10mm; /* Keep padding for content */
+      border: 5mm inset #000;
+      box-sizing: border-box;
+      position: relative;
+      text-shadow: none; /* halka black shadow */
+      letter-spacing: 0.8px;
+    
+      page-break-after: always;
+    }
+    .certificate:last-child {
+      page-break-after: avoid;
+    }
+    .hologram {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      width: 100px;
+      height: 100px;
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(255,255,255,0.1),
+        rgba(255,255,255,0.1) 10px,
+        rgba(0,0,0,0.1) 10px,
+        rgba(0,0,0,0.1) 20px
+      );
+      opacity: 0.5;
+      z-index: 1;
+    }
+
+    .photo-box {
+        position: absolute;
+        top: 5mm;
+        left: 10mm;
+        width: 40mm;
+        height: 50mm;
+        border: 1mm dashed #555;
+        text-align: center;
+        line-height: 1.2;
+        font-size: 14px;
+        color: #555;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        padding: 5px;
+        z-index: 2;
+    }
+
+    .signature-box {
+      position: absolute;
+      bottom: 10mm;
+      right: 15mm;
+      text-align: right;
+      width: 500px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+    .button-container {
+      text-align: center;
+      margin: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 5px 10px;
+      font-size: 40px;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      background-color: #007bff;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+    p {
+      text-indent: 40px;
+      line-height: 1.6;
+      font-size: 18px;
+      margin: 5px 0;
+      text-align: justify;
+    }
+    .certificate p:first-of-type {
+      text-indent: 0;
+       margin-top: 10mm;
+    }
+
+    .hidden {
+      display: none;
+    }
+    #pdf-progress {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #333;
+      color: black;
+      padding: 15px 25px;
+      border-radius: 8px;
+      box-shadow: none;
+      display: none;
+      z-index: 1000;
+      font-size: 1rem;
+    }
+    select, input[type="file"] {
+      padding: 30px;
+      margin: 50px 0;
+      border: 3px solid #ccc;
+      border-radius: 4px;
+      font-size: 3rem;
+      width: calc(100% - 22px);
+      box-sizing: border-box;
+    }
+    label {
+      font-weight: bold;
+      margin-right: 10px;
+      display: block;
+      margin-top: 15px;
+    }
+    #output > .certificate {
+      margin-bottom: 100px;
+    }
+    h2 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+      margin-top: 10mm;
+    }
+    .placeholder {
+  border-bottom: 1px dashed #000;
+  display: inline;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  letter-spacing: 0;
+}
+    .excel-info-text {
+    
+      text-align: center;
+      text-indent:0;
+      font-style: italic;
+      color: black;
+      margin-bottom: 15px;
+      font-size: 0.9em;
+    }
+
+     @media print {
+      body {
+        background: none;
+        margin: 0;
+        padding: 0;
+      }
+      .ecxel-container {
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+        max-width: none;
+        background: none;
+      }
+      .button-container, #pdf-progress, h2, label, select, input,header,.hero,footer, .excel-info-text {
+        display: none !important;
+      }
+      .certificate {
+        margin: 5px ;
+        padding: 20mm 6mm;
+        width: 210mm;
+        min-height: 170mm;
+        page-break-after: always;
+      }
+      .certificate:last-child {
+        page-break-after: avoid;
+      }
+      .hologram {
+        opacity: 0.2;
+      }
+      p {
+        text-indent: 40px;
+        line-height: 1.5;
+        font-size: 16px;
+        text-align: justify;
+        padding-left: 5mm;
+        padding-right: 5mm;
+      }
+      .certificate p:first-of-type {
+        text-indent: 0;
+         margin-top: 10mm;
+      }
+       .photo-box {
+           position: absolute;
+           top: 10mm;
+           left: 10mm;
+           width: 35mm;
+           height: 45mm;
+           border: 1mm dashed #555;
+           font-size: 12px;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           box-sizing: border-box;
+           padding: 3px;
+           z-index: 2;
+       }
+      .signature-box {
+        position: absolute;
+        bottom: 10mm;
+        right: 15mm;
+        text-align: right ;
+        width: 500px;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+      }
+       .signature-box p {
+           text-indent: 0 !important;
+           line-height: 1.2 !important;
+           margin: 0 !important;
+          display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+       }
+        .signature-box div {
+             height: 20px !important;
+        }
+     }
+  </style>
+</head>
+<body>
+   <header>
+    <div class="container">
+        <div>GYAN SHALA</div>
+        <nav>
+            <ul>
+                <li><a href="home.html">home</a></li>
+                <li><a href="about.html">about us</a></li>
+                <li><a href="contact.html">contact</a></li>
+                <li><a href="blog.html">બ્લોગ</a></li> </ul>
+        </nav>
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="શોધો...">
+            <button type="submit" class="search-button">શોધો</button>
+        </div>
+    </div>
+</header>
+
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1> welcome to the my GYAN-SHALA</h1>
+                <p style="text-align: center";>સરળતાથી મેનેજ કરો અને એક્સેસ કરો.</p>
+            </div>
+        </section>
+  <div class="excel-container">
+    <h2>બોનાફાઈડ પ્રમાણપત્ર જનરેટર </h2>
+    <p class="excel-info-text">Excel ફાઈલમાં 'student' અને 'schoolinfo' નામની બે શીટ હોવી જરૂરી છે.<br>બંને શીટમાં હેડર રો આપોઆપ શોધાશે.</p>
+
+    <label for="upload">Excel ફાઈલ અપલોડ કરો:</label>
+    <input type="file" id="upload" accept=".xlsx, .xls" required/>
+
+    <label for="studentSelect">વિદ્યાર્થી પસંદ કરો:</label>
+    <select id="studentSelect" disabled>
+      <option value="">-- કૃપા કરીને Excel અપલોડ કરો --</option>
+    </select>
+
+    <div id="output">
+      </div>
+
+    <div id="buttonContainer" class="hidden button-container">
+      <button onclick="window.print()">પ્રિન્ટ કરો</button>
+      <button id="pdfButton" onclick="saveAsPDF()">PDF સેવ કરો</button>
+       
+    </div>
+ 
+  </div>
+  <div class="footer">
+    <footer>
+    <h2>© 2025 Jd Gyan Shala. All rights reserved.</h2>
+    <p style="text-align: center";><a href="Privacy Policy.html">Privacy Policy</a> | <a href="Terms of Service.html">Terms of Service</a></p>
+    </footer>
+   </div>
+   <div id="pdf-progress">PDF જનરેટ થઇ રહી છે... <span id="progress-percent">0%</span></div>
+
+  <script>
+  let students = [];
+  let schoolInfo = null;
+  const jsPDF = window.jspdf.jsPDF;
+
+  // --- Helper Functions (parseIndianDate, formatDateDDMMYYYY, numberToGujaratiWords, getGujaratiDateInWords, numberToEnglishWords, getEnglishDateInWords, getOrdinalSuffix, translateReligion, translateSubcaste) ---
+   // These functions are enhanced for robustness and consistent date handling.
+  function parseIndianDate(dateValue) {
+      if (!dateValue) return new Date(NaN);
+      // Check for Excel numeric date serial (e.g., 44235)
+      if (typeof dateValue === 'number' && dateValue > 25569) { // Excel serial dates start after 1/1/1970 + offset (25569 is 1899-12-31)
+          // XLSX.SSF.parse_date_code returns an object {y, m, d, H, M, S}
+          const parsed = XLSX.SSF.parse_date_code(dateValue);
+          // Basic validation for reasonable year range
+          if (parsed && parsed.y && parsed.m && parsed.d && parsed.y >= 1900 && parsed.y < 2100 && parsed.m >= 1 && parsed.m <= 12 && parsed.d >= 1 && parsed.d <= 31) {
+              // Use UTC to avoid timezone shifts when creating date from components
+              return new Date(Date.UTC(parsed.y, parsed.m - 1, parsed.d)); // m-1 because JS months are 0-indexed
+          }
+      }
+      // Check if it's already a valid Date object
+      if (dateValue instanceof Date && !isNaN(dateValue.getTime())) return dateValue;
+
+      // Try parsing string dates
+      if (typeof dateValue === 'string') {
+          const cleaned = dateValue.trim();
+          let parts;
+
+          // Try dd/mm/yyyy, dd-mm-yyyy, dd.mm.yyyy formats first (most common Indian formats)
+          if (/^\d{1,2}[\/\-\.]\d{1,2}[\/\-\.]\d{2,4}$/.test(cleaned)) {
+              parts = cleaned.split(/[\/\-\.]/);
+              if (parts.length === 3) {
+                  const [d, m, yStr] = parts;
+                  const day = Number(d);
+                  const month = Number(m);
+                  let year = Number(yStr);
+                  // Handle 2-digit years (e.g., 23 -> 2023) - assume recent years
+                  if (!isNaN(year) && year >= 0 && year < 100) {
+                       // Heuristic: if year + 2000 is within ~10 years of current year, use 20xx, otherwise 19xx
+                       const currentYear = new Date().getFullYear();
+                       year += (year + 2000 <= currentYear + 50) ? 2000 : 1900; // Adjusted heuristic range
+                  }
+                  if (!isNaN(day) && !isNaN(month) && !isNaN(year) && year >= 1900 && year < 2100 && month >= 1 && month <= 12 && day >= 1 && day <= 31) {
+                       // Validate date components (e.g., month cannot have more than 31 days) - Basic check
+                       const testDate = new Date(Date.UTC(year, month - 1, day));
+                       if (testDate.getUTCFullYear() === year && testDate.getUTCMonth() === month - 1 && testDate.getUTCDate() === day) {
+                           return testDate; // Use UTC
+                       }
+                  }
+              }
+          }
+           // Try YYYY-MM-DD format (ISO format)
+          else if (/^\d{4}-\d{1,2}-\d{1,2}$/.test(cleaned)) {
+              parts = cleaned.split('-');
+              if(parts.length === 3) {
+                  const [y, m, d] = parts.map(Number);
+                   if (!isNaN(y) && !isNaN(m) && !isNaN(d) && y >= 1900 && y < 2100 && m >= 1 && m <= 12 && d >= 1 && d <= 31) {
+                     const testDate = new Date(Date.UTC(y, m - 1, d));
+                       if (testDate.getUTCFullYear() === y && testDate.getUTCMonth() === m - 1 && testDate.getUTCDate() === d) {
+                           return testDate; // Use UTC
+                       }
+                  }
+              }
+          }
+          // Add other specific formats if needed (e.g., "dd-Mon-yyyy")
+          // Note: Standard Date.parse() or new Date(string) can be unreliable due to browser differences and timezone issues.
+          // Custom parsing for expected formats is generally better.
+      }
+
+      // If all custom parsing fails, try standard Date parsing as a last resort
+       try {
+          const parsedDate = new Date(dateValue); // This might parse in local time zone
+           // Check if parsing was successful and year is in a reasonable range
+          if (parsedDate instanceof Date && !isNaN(parsedDate.getTime()) && parsedDate.getFullYear() >= 1900 && parsedDate.getFullYear() < 2100) {
+               // If standard parsing worked, convert it to a UTC date with only Year, Month, Day
+               return new Date(Date.UTC(parsedDate.getFullYear(), parsedDate.getMonth(), parsedDate.getDate()));
+           }
+       } catch(e) { /* failed standard parsing */ }
+
+      // If all parsing methods fail, return invalid date
+      return new Date(NaN);
+  }
+
+  function formatDateDDMMYYYY(date) {
+      // Check if the input is a valid Date object
+      if (!(date instanceof Date) || isNaN(date.getTime())) return "";
+      try {
+          // Use UTC methods to format consistently regardless of local timezone
+          const day = String(date.getUTCDate()).padStart(2, '0');
+          const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // getUTCMonth() is 0-indexed
+          const year = date.getUTCFullYear();
+          // Basic year validation
+          if (year < 1900 || year > 2100) return "";
+          return `${day}/${month}/${year}`;
+      } catch (e) {
+          console.error("Error formatting date:", e);
+          return ""; // Return empty string on error
+      }
+  }
+
+    // Gujarati number to words function (complex, keeping as is)
+    function numberToGujaratiWords(num) {
+        num = Number(num); if (isNaN(num)) return ""; if (num === 0) return "શૂન્ય"; if (num < 0) return "માઈનસ " + numberToGujaratiWords(Math.abs(num));
+         const gujaratiNumbers = ["", "એક", "બે", "ત્રણ", "ચાર", "પાંચ", "છ", "સાત", "આઠ", "નવ", "દસ", "અગિયાર", "બાર", "તેર", "ચૌદ", "પંદર", "સોળ", "સત્તર", "અઢાર", "ઓગણીસ", "વીસ", "એકવીસ", "બાવીસ", "ત્રેવીસ", "ચોવીસ", "પચ્ચીસ", "છવીસ", "સત્તાવીસ", "અઠ્ઠાવીસ", "ઓગણત્રીસ", "ત્રીસ", "એકત્રીસ", "બત્રીસ", "તેત્રીસ", "ચોત્રીસ", "પાંત્રીસ", "છત્રીસ", "સાડત્રીસ", "આડત્રીસ", "ઓગણચાલીસ", "ચાલીસ", "એકતાલીસ", "બેતાલીસ", "ત્રેતાલીસ", "ચુંમાલીસ", "પિસ્તાલીસ", "છેતાલીસ", "સુડતાલીસ", "અડતાલીસ", "ઓગણપચાસ", "પચાસ", "એકાવન", "બાવન", "ત્રેપન", "ચોપન", "પંચાવન", "છપ્પન", "સત્તાવન", "અઠ્ઠાવન", "ઓગણસાઈઠ", "સાઈઠ", "એકસઠ", "બાસઠ", "ત્રેસઠ", "ચોસઠ", "પાંસઠ", "છાસઠ", "સડસઠ", "અડસઠ", "ઓગણોસિતેર", "સિત્તેર", "એકોતેર", "બોતેર", "તોતેર", "ચુમોતેર", "પંચોતેર", "છોતેર", "સિત્યોતેર", "ઇઠ્યોતેર", "ઓગણાએંસી", "એંસી", "એક્યાસી", "બ્યાસી", "ત્યાસી", "ચોર્યાસી", "પંચાસી", "છ્યાસી", "સિત્યાસી", "ઈઠ્યાસી", "નેવ્યાસી", "નેવું", "એકાણું", "બાણું", "ત્રાણું", "ચોરાણું", "પંચાણું", "છન્નું", "સત્તાણું", "અઠ્ઠાણું", "નવ્વાણું"];
+        if (num < 100) { return gujaratiNumbers[num] || String(num); }
+        else if (num < 1000) { let h = Math.floor(num / 100), r = num % 100; let hw = h === 1 ? "સો" : (gujaratiNumbers[h] ? gujaratiNumbers[h] + " સો" : numberToGujaratiWords(h) + " સો"); return hw + (r ? " " + numberToGujaratiWords(r) : ""); }
+        else if (num < 100000) { let t = Math.floor(num / 1000), r = num % 1000; return numberToGujaratiWords(t) + " હજાર" + (r ? " " + numberToGujaratiWords(r) : ""); }
+        // Special case for years 1100-1999 ending in 00 or with remainder
+        if (num >= 1000 && num < 10000) {
+             if (num >= 1100 && num < 2000) {
+                let h=Math.floor(num/100), r=num%100;
+                 let hundredsWord = (h === 11) ? "અગિયાર સો" : (h === 12) ? "બાર સો" : (h === 13) ? "તેર સો" : (h === 14) ? "ચૌદ સો" : (h === 15) ? "પંદર સો" : (h === 16) ? "સોળ સો" : (h === 17) ? "સત્તર સો" : (h === 18) ? "અઢાર સો" : (h === 19) ? "ઓગણી સો" : numberToGujaratiWords(h) + " સો";
+                 if(r===0) return hundredsWord;
+                 else return hundredsWord + " " + numberToGujaratiWords(r);
+             }
+             else if (num >= 2000 && num < 2100) { let r = num % 100; return "બે હજાર" + (r ? " " + numberToGujaratiWords(r) : ""); }
+             else { let t=Math.floor(num/1000), r=num%1000; return numberToGujaratiWords(t)+" હજાર"+(r?" "+numberToGujaratiWords(r):""); }
+         }
+         if (num >= 100000 && num < 10000000) { let l = Math.floor(num/100000), r = num % 100000; return numberToGujaratiWords(l) + " લાખ" + (r ? " " + numberToGujaratiWords(r) : ""); }
+         if (num >= 10000000 && num < 1000000000) { let c = Math.floor(num/10000000), r = num % 10000000; return numberToGujaratiWords(c) + " કરોડ" + (r ? " " + numberToGujaratiWords(r) : ""); }
+         return String(num); // Fallback for very large numbers
+    }
+
+
+    function getGujaratiDateInWords(date) {
+        if (!(date instanceof Date) || isNaN(date.getTime())) return "";
+        const gujMonths = ["જાન્યુઆરી", "ફેબ્રુઆરી", "માર્ચ", "એપ્રિલ", "મે", "જૂન", "જુલાઈ", "ઓગસ્ટ", "સપ્ટેમ્બર", "ઓક્ટોબર", "નવેમ્બર", "ડિસેમ્બર"];
+        // Use UTC methods to get day, month, and year components
+        let dayWord = numberToGujaratiWords(date.getUTCDate());
+        let monthWord = gujMonths[date.getUTCMonth()];
+        let year = date.getUTCFullYear();
+        let yearWord;
+
+        // Handle years in words more specific to Gujarati year pronunciation (e.g., ઓગણીસ સો અઠ્ઠાણું for 1998)
+         if (year >= 1100 && year < 2100) {
+             yearWord = numberToGujaratiWords(year); // Use the enhanced numberToGujaratiWords
+         } else {
+             yearWord = String(year); // Fallback for years outside this range
+         }
+
+
+        return `${dayWord} ${monthWord}, ${yearWord}`;
+    }
+
+
+    function numberToEnglishWords(num) {
+        num = Number(num); if (isNaN(num)) return ""; if (num === 0) return 'Zero'; if (num < 0) return 'Minus ' + numberToEnglishWords(Math.abs(num));
+        const a = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
+        const b = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+        const scales = ['', 'Thousand', 'Million', 'Billion', 'Trillion'];
+    
+     function numberToOrdinalWords(num) {  
+  const ordinals = [  
+    '', 'First', 'Second', 'Third', 'Fourth', 'Fifth', 'Sixth', 'Seventh', 'Eighth', 'Ninth',  
+    'Tenth', 'Eleventh', 'Twelfth', 'Thirteenth', 'Fourteenth', 'Fifteenth', 'Sixteenth',  
+    'Seventeenth', 'Eighteenth', 'Nineteenth'  
+  ];  
+  const tens = ['', '', 'Twenty', 'Thirty'];  
+  const tensOrdinals = ['', '', 'Twentieth', 'Thirtieth'];  
+  
+  if (num < 20) return ordinals[num];  
+  if (num % 10 === 0) return tensOrdinals[Math.floor(num / 10)];  
+  return tens[Math.floor(num / 10)] + ' ' + ordinals[num % 10];  
+}  
+
+        // Function to convert a number less than 1000 into words
+        function convertChunk(n) {
+            if (n === 0) return '';
+            let word = '';
+            if (n >= 100) {
+                word += a[Math.floor(n / 100)] + ' Hundred';
+                n %= 100;
+                if (n > 0) word += ' '; // Add space before remainder
+            }
+            if (n >= 20) {
+                word += b[Math.floor(n / 10)];
+                n %= 10;
+                if (n > 0) word += '-' + a[n];
+            } else if (n > 0) {
+                word += a[n];
+            }
+            return word;
+        }
+
+        // Special handling for years like Nineteen Ninety-Eight (1998)
+         const originalNum = Number(arguments[0]);
+         if (originalNum >= 1100 && originalNum <= new Date().getFullYear() + 50 && arguments[1] !== 'notYear') { // Adjusted range
+             if (originalNum >= 1100 && originalNum < 2000) {
+                 const firstPart = Math.floor(originalNum / 100); // e.g., 19 for 1998
+                 const secondPart = originalNum % 100;        // e.g., 98 for 1998
+                 let yearWord = numberToEnglishWords(firstPart, 'notYear'); // Convert 19 -> Nineteen
+                 if (secondPart > 0) {
+                     yearWord += ' ' + numberToEnglishWords(secondPart, 'notYear'); // Convert 98 -> Ninety-Eight
+                 } else {
+                     yearWord += ' Hundred'; // e.g., Eleven Hundred
+                 }
+                 return yearWord.trim();
+             }
+             // For years 2000 onwards, standard conversion is usually fine (Two Thousand Twenty-Three)
+             else if (originalNum >= 2000 && originalNum < 2100) {
+                 // Standard logic is fine for Two Thousand and...
+             }
+         }
+
+
+        let words = '';
+        let scaleIndex = 0;
+        if (num === 0) return 'Zero';
+
+        while (num > 0) {
+            if (num % 1000 !== 0) {
+                const chunkWords = convertChunk(num % 1000);
+                words = chunkWords + (scales[scaleIndex] ? ' ' + scales[scaleIndex] : '') + (words ? ' ' + words : '');
+            }
+            num = Math.floor(num / 1000);
+            scaleIndex++;
+        }
+
+        return words.trim();
+    }
+
+
+    function getEnglishDateInWords(date) {
+        if (!(date instanceof Date) || isNaN(date.getTime())) return "";
+        // Use UTC methods
+        const day = date.getUTCDate();
+        const month = date.toLocaleString('en-US', { month: 'long', timeZone: 'UTC' });
+        const year = date.getUTCFullYear();
+
+        const dayWithSuffix = getOrdinalSuffix(day);
+        const yearInWords = numberToEnglishWords(year); // Use the enhanced numberToEnglishWords
+
+        return `${dayWithSuffix} ${month}, ${yearInWords}`;
+    }
+
+
+  function getOrdinalSuffix(n) { // Helper for English date suffix (1st, 2nd, 3rd, etc.)
+      const s = ["th", "st", "nd", "rd"],
+            v = n % 100;
+      return n + (s[(v - 20) % 10] || s[v] || s[0]);
+  }
+
+  // Translation maps for Religion and Subcaste
+  const translateReligion = { "હિન્દુ": "Hindu", "મુસ્લિમ": "Muslim", "ઈસાઈ": "Christian", "ખ્રિસ્તી": "Christian", "જૈન": "Jain", "સીખ": "Sikh", "બૌદ્ધ": "Buddhist", "પારસી": "Parsi", "શીખ": "Sikh", "મુસલમાન": "Muslim", "ખ્રિસ્ચિયન": "Christian"};
+  const translateSubcaste = { "ઠાકોર": "Thakor", "વણકર": "Vankar", "ચમાર": "Chamar", "પટેલ": "Patel", "શેખ": "Shaikh", "મેર": "Mer", "રાજપૂત": "Rajput", "બ્રાહ્મણ": "Brahmin", "વાલ્મીકી": "Valmiki", "દલિત": "Dalit", "રબારી": "Rabari", "મળીક": "Malik", "મકવાણા": "Makwana", "તળપદ": "Talpada", "ચૌધરી": "Chaudhary", "યાદવ": "Yadav", "ગોહિલ": "Gohil", "ઝાલા": "Zala", "સોલંકી": "Solanki", "સુથાર": "Suthar", "ભરવાડ": "Bharwad", "કુંભાર": "Kumbhar", "દરજી": "Darji", "વાણીક": "Vanik", "લોહિત": "Rohit", "સોની": "Soni", "અહિર": "Ahir", "દરબારી": "Darbari", "મોદી": "Modi", "મહેતા": "Mehta", "શર્મા": "Sharma", "શાહ": "Shah", "પિંઢારા": "Pindhara", "દેવીપૂજક": "Devipujak", "દેવીપુજક": "Devipujak", "રોહિત": "Rohit", "મીર": "Mir", "કોળી": "Koli", "ક્ષત્રિય": "Kshatriya", "વાણિયા": "Vaniya","નાયી": " nayi"};
+
+
+  // --- PDF Progress Functions (Appear only during PDF generation) ---
+  function showProgress(message = 'PDF જનરેટ થઇ રહી છે...') {
+      document.getElementById('pdf-progress').style.display = 'block';
+      updateProgress(0, 1); // Start with 0%
+  }
+  function hideProgress() {
+      document.getElementById('pdf-progress').style.display = 'none';
+  }
+  function updateProgress(current, total) {
+      const progressSpan = document.getElementById('progress-percent');
+      let percentage = 0;
+      if (total > 0 && current >= 0) {
+          percentage = Math.round((current / total) * 100);
+      }
+      // Cap percentage at 100%
+      percentage = Math.min(100, percentage);
+      progressSpan.textContent = `${percentage}%`;
+  }
+
+  // --- Helper to find sheet name (case-insensitive) ---
+  function findSheetName(workbook, targetName) {
+      const lowerTarget = targetName.toLowerCase().trim();
+      return workbook.SheetNames.find(name => name.toLowerCase().trim() === lowerTarget) || null;
+  }
+
+    // --- Function to auto-detect header row ---
+    // This function is generalized to be used for both sheets
+    function autoDetectHeaderRowIndex(sheetAoa, requiredKeysMap, sheetName = "Sheet") {
+        const maxRowsToCheck = Math.min(sheetAoa.length, 15); // Check first 15 rows or fewer
+        let bestMatchIndex = -1;
+        let bestMatchCount = 0;
+
+        // Extract primary header texts to look for from the map
+        const primaryHeaderTexts = Object.values(requiredKeysMap)
+             .map(keys => String(keys[0] || "").toLowerCase().trim()) // Use the first key as primary match text
+             .filter(text => text !== ""); // Remove empty strings
+
+        if (primaryHeaderTexts.length === 0) {
+            console.warn(`No primary headers defined for auto-detection in ${sheetName}.`);
+            return -1; // Cannot auto-detect if no headers are defined
+        }
+
+        for (let i = 0; i < maxRowsToCheck; i++) {
+            const row = sheetAoa[i];
+            if (!row || row.length === 0) continue; // Skip empty rows
+
+            let currentMatchCount = 0;
+            const rowValuesLower = row.map(cell => String(cell || "").toLowerCase().trim());
+
+            primaryHeaderTexts.forEach(requiredHeader => {
+                if (rowValuesLower.includes(requiredHeader)) {
+                    currentMatchCount++;
+                }
+            });
+
+            // Consider this row the best match if it has more matches or is the first row with matches
+            if (currentMatchCount > bestMatchCount) {
+                bestMatchCount = currentMatchCount;
+                bestMatchIndex = i;
+            } else if (currentMatchCount > 0 && bestMatchIndex === -1) {
+                 // If no match found yet, and this row has some matches, make it the initial best
+                 bestMatchCount = currentMatchCount;
+                 bestMatchIndex = i;
+             }
+        }
+
+        // Define a threshold for a valid header match
+        // Require a certain percentage of the primary headers to be found
+        const minRequiredMatches = Math.ceil(primaryHeaderTexts.length * 0.5); // e.g., require at least 50% matches
+
+        if (bestMatchIndex !== -1 && bestMatchCount >= minRequiredMatches) {
+             console.log(`Auto-detected header row for '${sheetName}' at index ${bestMatchIndex} (Row ${bestMatchIndex + 1}) with ${bestMatchCount} matches.`);
+            return bestMatchIndex;
+        }
+
+        // If auto-detection fails to find a clear header row based on the threshold
+        console.warn(`Auto-detection of header row for '${sheetName}' failed (found ${bestMatchCount}/${primaryHeaderTexts.length} required headers).`);
+        return -1; // Return -1 to indicate failure
+    }
+
+
+  // --- Event Listener for File Upload ---
+  document.getElementById('upload').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    students = []; schoolInfo = null; // Reset data
+    const select = document.getElementById('studentSelect');
+    select.innerHTML = '<option value="">-- પ્રક્રિયા ચાલુ છે... --</option>';
+    select.disabled = true;
+
+    document.getElementById('output').innerHTML = '';
+    document.getElementById('buttonContainer').classList.add('hidden');
+    hideProgress(); // Ensure progress is hidden
+
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      try {
+          const data = new Uint8Array(event.target.result);
+          const workbook = XLSX.read(data, { type: 'array', cellDates: false, raw: true, defval: "" }); // Read raw values, disable cellDates
+
+          // --- Define expected header keys for both sheets ---
+           const schoolKeys = {
+              schoolNameGuj: ["શાળાનું નામ (ગુજરાતી)", "school name gujarati", "શાળા નું નામ", "શાળાનું નામ", "school name guj"],
+              schoolNameEng: ["school name (english)", "school name", "શાળા નું નામ અંગ્રેજી", "શાળાનું નામ (અંગ્રેજી)", "school name eng"],
+              talukaNameGuj: ["તાલુકો (ગુજરાતી)", "taluka gujarati", "તાલુકો", "taluka", "taluka guj"],
+              talukaNameEng: ["taluka (english)", "taluka english", "તાલુકો અંગ્રેજી", "taluka eng","taluka","taluko"],
+              districtNameGuj: ["જિલ્લો (ગુજરાતી)", "district gujarati", "જીલ્લો (ગુજરાતી)", "જિલ્લો", "district guj","જીલ્લો"],
+              districtNameEng: ["district (english)", "district english", "જીલ્લો (અંગ્રેજી)", "જિલ્લો (અંગ્રેજી)", "district eng","district"]
+          };
+           const studentKeys = {
+              nameGuj: ["વિદ્યાર્થીનું નામ (ગુજરાતી)", "Student Name (Gujarati)", "નામ ગુજરાતી", "વિદ્યાર્થી નું નામ ગુજરાતી", "vidyarthi nu nam gujarati", "name gujarati","વિદ્યાર્થીનું નામ","નામ (ગુજરાતી)"],
+              nameEng: ["વિદ્યાર્થીનું નામ (અંગ્રેજી)", "Student Name (English)", "નામ અંગ્રેજી", "વિદ્યાર્થી નું નામ અંગ્રેજી", "vidyarthi nu nam english", "name english","Student Name","Name","Name(English)","Name(english)"],
+              gender: ["લિંગ", "Gender", "જાતિ (લિંગ)", "jati (ling)", "ling", "gender"],
+              academicYear: ["શૈક્ષણિક વર્ષ", "Academic Year", "વર્ષ", "shaixanik varsh", "academic year"],
+              standard: ["ધોરણ", "Standard", "Class", "std", "dhoran", "class"],
+              dob: ["જન્મ તારીખ", "Date of Birth", "dob", "જ. તા.", "janm tarikh", "date of birth", "birth date"],
+              grNo: ["જ.ર.નં", "G.R. No.", "GR No", "gr", "j.r. nan", "j r no", "gr no", "general register no"],
+              religion: ["જાતિ", "Religion", "ધર્મ", "jati", "religion", "dharm"],
+              subcaste: ["પેટાજાતિ", "Sub-Caste", "Subcaste", "પેટા જાતિ", "peta jati", "sub caste", "subcaste"]
+          };
+
+           // Helper to find the *actual* key name in a header row that matches one of the possible keys
+           const findActualKeyInHeader = (possibleKeys, headerRowRaw) => {
+               const lowerPossibleKeys = possibleKeys.map(k => String(k || "").toLowerCase().trim());
+               for (let i = 0; i < headerRowRaw.length; i++) {
+                    const headerName = String(headerRowRaw[i] || "").toLowerCase().trim();
+                    if (lowerPossibleKeys.includes(headerName) && headerName !== "") { // Ensure header is not just empty string
+                        return headerRowRaw[i]; // Return the original key name from the Excel header
+                    }
+               }
+               return null; // Not found
+           };
+
+
+          // --- Process 'schoolinfo' sheet (Auto-detect Header Row) ---
+          const schoolInfoSheetName = findSheetName(workbook, "schoolinfo");
+          if (!schoolInfoSheetName) throw new Error("Excel ફાઈલમાં 'schoolinfo' નામની શીટ મળી નથી.");
+          const schoolInfoSheet = workbook.Sheets[schoolInfoSheetName];
+          const schoolInfoAoa = XLSX.utils.sheet_to_json(schoolInfoSheet, { header: 1, raw: true, defval: "" }); // Read all data as array of arrays
+
+          if (schoolInfoAoa.length === 0) {
+               throw new Error("'schoolinfo' શીટ ખાલી છે.");
+          }
+
+          // Auto-detect the header row index for school info
+          const schoolHeaderRowIndex = autoDetectHeaderRowIndex(schoolInfoAoa, schoolKeys, "schoolinfo");
+
+          if (schoolHeaderRowIndex === -1 || schoolHeaderRowIndex >= schoolInfoAoa.length) {
+               // If auto-detection failed or index is out of bounds
+                 throw new Error(`'schoolinfo' શીટમાં જરૂરી હેડર રો શોધી શકાયો નથી.`);
+          }
+
+          const schoolHeaderRaw = schoolInfoAoa[schoolHeaderRowIndex];
+          // Data row is expected immediately after the header row for school info
+          const schoolDataRowRaw = schoolInfoAoa[schoolHeaderRowIndex + 1];
+
+           if (!schoolDataRowRaw || schoolDataRowRaw.length === 0) {
+               throw new Error(`'schoolinfo' શીટમાં હેડર રો (${schoolHeaderRowIndex + 1}) પછી ડેટા રો મળી નથી.`);
+           }
+
+          schoolInfo = {};
+          let missingSchoolInfo = [];
+          Object.keys(schoolKeys).forEach(key => {
+              const possibleKeys = schoolKeys[key];
+              const actualHeaderName = findActualKeyInHeader(possibleKeys, schoolHeaderRaw);
+              const commonName = possibleKeys[0]; // Use the first key name for messages
+
+              if (actualHeaderName !== null) {
+                  const index = schoolHeaderRaw.indexOf(actualHeaderName);
+                  const value = (schoolDataRowRaw[index] !== undefined && schoolDataRowRaw[index] !== null) ? String(schoolDataRowRaw[index]).trim() : "";
+                  schoolInfo[key] = value;
+                   // Check if data is missing in the row for this header
+                  if (value === "" && !missingSchoolInfo.includes(`${commonName} (Data Missing)`)) {
+                       missingSchoolInfo.push(`${commonName} (Data Missing)`);
+                   }
+              } else {
+                   // Header was not found in the detected header row
+                   if (!missingSchoolInfo.includes(`${commonName} (Header Missing)`)) {
+                       missingSchoolInfo.push(`${commonName} (Header Missing)`);
+                   }
+                   schoolInfo[key] = ""; // Ensure the key exists but is empty
+              }
+          });
+
+           // Refine school info missing messages - only report required ones as errors
+           const requiredSchoolFields = ['schoolNameGuj', 'schoolNameEng', 'talukaNameGuj', 'districtNameGuj'];
+           const finalMissingSchoolInfo = missingSchoolInfo.filter(msg => {
+               const headerNameInMsg = msg.substring(0, msg.indexOf(' ('));
+               // Check if the missing field is one of the required ones
+               return requiredSchoolFields.some(key => schoolKeys[key][0] === headerNameInMsg);
+           });
+
+
+          if (finalMissingSchoolInfo.length > 0) {
+                 const uniqueMissingMessages = [...new Set(finalMissingSchoolInfo)].join(', ');
+                 throw new Error(`'schoolinfo' શીટમાં જરૂરી હેડર (${schoolHeaderRowIndex + 1} મી રોમાં) અથવા ડેટા ખૂટે છે: ${uniqueMissingMessages}`);
+          } else {
+               console.log("'schoolinfo' sheet processed successfully.");
+          }
+
+
+          // --- Process 'student' sheet (Auto-detect Header Row) ---
+          const studentSheetName = findSheetName(workbook, "student");
+          if (!studentSheetName) throw new Error("Excel ફાઈલમાં 'student' નામની શીટ મળી નથી.");
+          const studentSheet = workbook.Sheets[studentSheetName];
+          const studentAoa = XLSX.utils.sheet_to_json(studentSheet, { header: 1, raw: true, defval: "" }); // Read all data as array of arrays
+
+          if (studentAoa.length === 0) {
+               throw new Error("'student' શીટ ખાલી છે.");
+          }
+
+          // Auto-detect the header row index for students
+          const studentHeaderRowIndex = autoDetectHeaderRowIndex(studentAoa, studentKeys, "student");
+
+           if (studentHeaderRowIndex === -1 || studentHeaderRowIndex >= studentAoa.length) {
+                throw new Error(`'student' શીટમાં જરૂરી હેડર રો શોધી શકાયો નથી.`);
+           }
+
+
+          const studentHeaderRaw = studentAoa[studentHeaderRowIndex];
+          // Data rows start *after* the header row
+          const studentDataAoa = studentAoa.slice(studentHeaderRowIndex + 1);
+
+           if (studentDataAoa.length === 0) {
+               // Check if there's at least one row after the header
+                console.warn(`'student' શીટમાં હેડર રો (${studentHeaderRowIndex + 1}) પછી કોઈ વિદ્યાર્થી ડેટા રો મળી નથી.`);
+                // Allow processing but the student list will be empty
+           }
+
+
+          // Manually map data rows to objects
+          students = studentDataAoa.map((rowAoa, rowIndex) => {
+              const student = {};
+              let missingInfo = [];
+
+              // Map data based on header column index
+              Object.keys(studentKeys).forEach(key => {
+                  const possibleKeys = studentKeys[key];
+                  // Find the actual header name in the sheet's header row
+                  const actualHeaderName = findActualKeyInHeader(possibleKeys, studentHeaderRaw);
+                  const commonName = possibleKeys[0]; // Use the first key name for messages
+
+
+                  if (actualHeaderName !== null) {
+                      // Find the index of the actual header in the header row array
+                      const colIndex = studentHeaderRaw.indexOf(actualHeaderName);
+                       // Ensure colIndex is valid and within bounds of the data row
+                      if (colIndex !== -1 && colIndex < rowAoa.length && rowAoa[colIndex] !== undefined && rowAoa[colIndex] !== null) {
+                           student[key] = rowAoa[colIndex]; // Store raw value first
+                      } else {
+                           // Header found, but data is missing for this row/column
+                           student[key] = ""; // Ensure it's an empty string
+                       }
+                  } else {
+                       // Header was not found in the header row at all
+                       student[key] = ""; // Ensure it's an empty string
+                       // This case is also flagged in missingInfo below if it's a required header
+                  }
+              });
+
+              // --- Validation and Data Cleaning ---
+
+              // Process DOB separately using the raw value stored in student.dob
+              student.dobRaw = student.dob; // Keep raw value for debugging/info
+              student.dob = student.dobRaw ? parseIndianDate(student.dobRaw) : new Date(NaN); // parseIndianDate handles various formats
+
+              // Process Gender - standardize to a known value
+              const cleanGender = String(student.gender || "").trim().toLowerCase();
+              if (["સ્ત્રી", "કન્યા", "female", "f"].includes(cleanGender)) student.gender = "female";
+              else if (["પુરુષ", "કુમાર", "male", "m"].includes(cleanGender)) student.gender = "male";
+              else student.gender = ""; // Unknown gender
+
+              // Process Name - ensure at least one name exists
+              student.nameGuj = String(student.nameGuj || "").trim();
+              student.nameEng = String(student.nameEng || "").trim();
+
+               // Process other fields as strings
+               student.standard = String(student.standard || "").trim();
+               student.grNo = String(student.grNo || "").trim();
+               student.academicYear = String(student.academicYear || "").trim();
+               student.religion = String(student.religion || "").trim();
+               student.subcaste = String(student.subcaste || "").trim();
+
+
+              // --- Check for missing *required* data fields after cleaning ---
+              const requiredStudentFields = ['nameGuj', 'nameEng', 'gender', 'academicYear', 'standard', 'dob', 'grNo'];
+              requiredStudentFields.forEach(field => {
+                   let isMissing = false;
+                   if (field === 'dob') {
+                       isMissing = isNaN(student.dob.getTime()); // Check if DOB is an invalid date
+                   } else if (field === 'nameGuj' || field === 'nameEng') {
+                        // Check if *both* names are missing
+                       if (!(student.nameGuj || student.nameEng)) isMissing = true;
+                   }
+                    else {
+                       // Check if the string value is empty after trimming
+                       isMissing = String(student[field] || "").trim() === "";
+                   }
+
+                   if (isMissing) {
+                       // Find the common name for the missing field for the error message
+                       const commonName = studentKeys[field] && studentKeys[field].length > 0 ? studentKeys[field][0] : field;
+                       const actualHeaderName = findActualKeyInHeader(studentKeys[field], studentHeaderRaw);
+
+                       let issueType = "Data Missing"; // Default assumption is header is present but data is missing
+
+                       if (actualHeaderName === null) {
+                            issueType = "Header Missing"; // Header itself was not found in the detected header row
+                       } else if (field === 'dob' && isNaN(student.dob.getTime()) && student.dobRaw) {
+                           issueType = "Invalid Format"; // DOB was present but couldn't be parsed
+                       } else if ((field === 'nameGuj' || field === 'nameEng') && !(student.nameGuj || student.nameEng)) {
+                            issueType = "Both Names Missing"; // Specific case for names
+                       } else if (String(student[field] || "").trim() === "" && actualHeaderName !== null) {
+                           issueType = "Data Missing"; // Header found but data is empty
+                       }
+
+
+                       // Add the missing info unless it's a duplicate
+                       const missingMessage = `${commonName} (${issueType})`;
+                       if (!missingInfo.includes(missingMessage)) {
+                           missingInfo.push(missingMessage);
+                       }
+                   }
+              });
+
+
+              // Determine if student data is incomplete
+              student.incomplete = missingInfo.length > 0;
+              student.missingInfo = missingInfo; // Store the list of issues
+               // Store the original row index from AOA for potential debugging (relative to the whole sheet)
+              student.originalAoaIndex = studentHeaderRowIndex + 1 + rowIndex; // Header row index + 1 + current index in dataAoa
+
+              return student;
+           });
+
+          // --- Check if any required headers were missing *at all* from the detected student header row ---
+          const missingStudentHeadersOverall = [];
+           const criticalHeaderKeys = ['nameGuj', 'nameEng', 'gender', 'academicYear', 'standard', 'dob', 'grNo'];
+           criticalHeaderKeys.forEach(key => {
+              const actualHeaderName = findActualKeyInHeader(studentKeys[key], studentHeaderRaw);
+              // Check if it's a required field header and wasn't found
+              if (actualHeaderName === null) {
+                  const commonName = studentKeys[key] && studentKeys[key].length > 0 ? studentKeys[key][0] : key;
+                   const missingMessage = `${commonName} (Header Missing)`;
+                  if (!missingStudentHeadersOverall.includes(missingMessage)) { // Prevent duplicates
+                     missingStudentHeadersOverall.push(missingMessage);
+                  }
+              }
+          });
+
+          if (missingStudentHeadersOverall.length > 0) {
+               alert(`ચેતવણી: 'student' શીટના શોધી કાઢેલ હેડર રો (${studentHeaderRowIndex + 1}) માં કેટલાક જરૂરી હેડર ખૂટે છે. કૃપા કરીને ખાતરી કરો કે નીચેના હેડર યોગ્ય રીતે લખેલા છે:\n${missingStudentHeadersOverall.join('\n')}\nપ્રમાણપત્રો કદાચ અધૂરા દેખાશે.`);
+          }
+
+
+          // --- Populate Dropdown ---
+          select.innerHTML = '<option value="">-- વિદ્યાર્થી પસંદ કરો --</option>';
+          let issueFoundInDropdown = false;
+          students.forEach((s, i) => {
+            // Show the original Excel row number for easier reference
+            const excelRowNumber = s.originalAoaIndex + 1; // +1 for 1-based Excel row number
+            const nameG = s.nameGuj, nameE = s.nameEng;
+            let text = (nameG || nameE) ? `${nameG || 'N/A'} (${nameE || 'N/A'})` : `Row ${excelRowNumber}`;
+            const opt = document.createElement('option');
+            opt.value = i;
+            let warnings = [];
+
+            if (s.incomplete) {
+                warnings.push(`Data Issues`); // General warning for any issue
+                opt.style.color = 'orange'; // Highlight students with issues
+                issueFoundInDropdown = true;
+            }
+
+            if (warnings.length > 0) text += ` [⚠]`; // Just show a warning icon, details in alert
+            opt.textContent = text;
+            select.appendChild(opt);
+          });
+
+          select.disabled = false;
+
+           // Alert about date parsing issues specifically across all students
+           const dateIssuesExist = students.some(s => s.missingInfo.some(info => info.includes('Invalid Format')));
+           if (dateIssuesExist) {
+                alert("ચેતવણી: કેટલાક વિદ્યાર્થીઓ માટે જન્મ તારીખ અમાન્ય ફોર્મેટમાં મળી છે. કૃપા કરીને Excel માં તારીખનું ફોર્મેટ તપાસો.");
+           }
+
+           console.log("Students processed:", students);
+
+
+      } catch (error) {
+          console.error("Error processing Excel file:", error);
+          alert("Excel ફાઈલ પ્રોસેસ કરવામાં ભૂલ આવી.\n" + error.message);
+          select.innerHTML = '<option value="">-- કૃપા કરીને Excel અપલોad કરો --</option>'; select.disabled = true; schoolInfo = null; students = []; // Reset fully
+      }
+    };
+    reader.onerror = function() {
+        console.error("FileReader error:", reader.error);
+        alert("ફાઈલ વાંચવામાં ભૂલ આવી.");
+        select.innerHTML = '<option value="">-- કૃપા કરીને Excel અપલોad કરો --</option>'; select.disabled = true; schoolInfo = null; students = []; // Reset fully
+    };
+    reader.readAsArrayBuffer(file);
+  });
+    
+
+  // --- Event Listener for Student Selection ---
+  document.getElementById('studentSelect').addEventListener('change', function(e) {
+    const selectedIndex = e.target.value;
+    const outputDiv = document.getElementById('output');
+    const buttonContainer = document.getElementById('buttonContainer');
+
+    if (selectedIndex === "") {
+      outputDiv.innerHTML = ''; buttonContainer.classList.add('hidden'); return;
+    }
+    if (!schoolInfo) {
+        alert("શાળાની માહિતી લોડ થઈ નથી. કૃપા કરીને ફાઈલ ફરીથી અપલોડ કરો.");
+        outputDiv.innerHTML = ''; buttonContainer.classList.add('hidden'); e.target.value = ""; return;
+    }
+    const student = students[selectedIndex];
+
+    // Alert user if the selected student row has missing/invalid data
+    if (student.incomplete) {
+        // Show the original Excel row number for the selected student
+        const excelRowNumber = student.originalAoaIndex + 1;
+        const name = student.nameGuj || student.nameEng || `Index ${selectedIndex}`;
+        const missingDetails = student.missingInfo && student.missingInfo.length > 0 ? student.missingInfo.join(', ') : 'Unknown data issues';
+        alert(`ચેતવણી: પસંદ કરેલ વિદ્યાર્થી (${name}, Excel Row ${excelRowNumber}) માટે ડેટા ખૂટે છે અથવા અમાન્ય છે.\nવિગતો: ${missingDetails}\nપ્રમાણપત્ર કદાચ અધૂરું દેખાશે.`);
+    }
+
+    outputDiv.innerHTML = generateCertificateHTML(student, schoolInfo);
+    buttonContainer.classList.remove('hidden');
+  });
+
+  // --- Function to Generate Certificate HTML (Past Tense Logic Included) ---
+  function generateCertificateHTML(student, schoolDetails) {
+    const currentDate = new Date(); const today = new Date(Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate())); // Use UTC for today
+    const formattedCurrentDate = formatDateDDMMYYYY(today);
+    const currentYear = today.getUTCFullYear();
+    // Note: JavaScript months are 0-indexed (Jan=0, Apr=3, May=4). Excel date parsing also results in 0-indexed months.
+    const currentMonthIndex = today.getUTCMonth(); // 0-indexed (0=Jan, 3=Apr, 4=May)
+    const academicYearEndMonth = 3; // Academic year typically ends in April (index 3)
+
+    const nameGuj = student.nameGuj || "_____________"; const nameEng = student.nameEng || "_____________";
+    const genderRaw = student.gender?.trim().toLowerCase();
+    const academicYearRaw = student.academicYear || "__-__";
+    const standard = student.standard || "__";
+    const dob = student.dob; // This is now a Date object or invalid Date
+    const dobFormatted = !isNaN(dob.getTime()) ? formatDateDDMMYYYY(dob) : "__/__/____"; // Use getTime() to check validity
+    const dobWordsGuj = !isNaN(dob.getTime()) ? getGujaratiDateInWords(dob) : "________________";
+    const dobWordsEng = !isNaN(dob.getTime()) ? getEnglishDateInWords(dob) : "________________";
+    const grNo = student.grNo || "__"; const religionGuj = student.religion || "__"; const subcasteGuj = student.subcaste || "__";
+    const religionEng = translateReligion[student.religion] || student.religion || "__";
+    const subcasteEng = translateSubcaste[student.subcaste] || student.subcaste || "__";
+
+    const schoolNameGuj = schoolDetails.schoolNameGuj || "_____________"; const schoolNameEng = schoolDetails.schoolNameEng || "_____________";
+    const talukaNameGuj = schoolDetails.talukaNameGuj || "__"; const talukaNameEng = schoolDetails.talukaNameEng || "__";
+    const districtNameGuj = schoolDetails.districtNameGuj || "__"; const districtNameEng = schoolDetails.districtNameEng || "__";
+
+    let gujP = "", engP = "", proG = "", proE = "", possG = "", possE = ""; possM= "";
+    if (genderRaw === "female") { gujP="કુમારી"; engP="Miss"; proG="તેણી"; proE="She"; possG="તેણીની"; possE="Her"; possM="તેમનો";}
+    else if (genderRaw === "male") { gujP="શ્રી."; engP="Mr."; proG="તે"; proE="He"; possG="તેમની"; possE="His";possM="તેમનો"; }
+    else { gujP=""; engP=""; proG="તેઓ"; proE="They"; possG="તેમની"; possE="Their"; possM="તેમનો";} // Default for unknown gender
+
+    let isPresentTense = true;
+    let startYear = NaN, endYear = NaN;
+
+    // Parse academic year like "2023-24", "2023-2024", "23-24"
+    if (academicYearRaw) {
+        const yrParts = academicYearRaw.match(/^(\d{2,4})[^\d]*(\d{2,4})$/); // Match pattern like YYYY-YY or YY-YY or YYYY-YYYY
+        if (yrParts && yrParts[1] && yrParts[2]) {
+            let part1 = parseInt(yrParts[1], 10);
+            let part2 = parseInt(yrParts[2], 10);
+
+            if (!isNaN(part1) && !isNaN(part2)) {
+                // Handle 2-digit years
+                if (part1 < 100) {
+                     // Assume 20xx for start year if it's recent, 19xx otherwise
+                     const currentYearTwoDigits = currentYear % 100;
+                     startYear = (part1 >= currentYearTwoDigits - 1 && part1 <= currentYearTwoDigits + 1 ) ? 2000 + part1 : 1900 + part1; // Heuristic for start year century
+
+                     // The end year is usually the start year + 1
+                     if (part2 === part1 + 1 || part2 === (startYear + 1) % 100 ) {
+                          endYear = startYear + 1;
+                     } else {
+                          // If part2 doesn't look like the next year's last two digits, treat it as a full year if > 1000, otherwise assume next year
+                           endYear = (part2 > 1000) ? part2 : startYear + 1;
+                            if(endYear < startYear) endYear += 100; // Handle cases like 2099-00 -> 2100
+                     }
+
+                } else { // Handle 4-digit years
+                    startYear = part1;
+                    endYear = (part2 > 1000) ? part2 : startYear + 1; // If part2 is not a full year, assume next year
+                     if(endYear < startYear) endYear += 100; // Handle cases like 2023-24 -> 2024 (where 24 is read as 24, not 2024)
+                }
+
+                 // Basic validation for parsed years
+                 if (startYear < 1900 || startYear > 2150 || endYear < 1900 || endYear > 2150 || endYear < startYear) {
+                     console.warn(`Academic year parsing resulted in unexpected years: ${startYear}-${endYear} from ${academicYearRaw}`);
+                     startYear = NaN; endYear = NaN; // Treat as invalid if outside reasonable range
+                 } else {
+                      // If endYear was parsed as YYYY and it's one year after startYear YYYY, it's correct.
+                      // If endYear was parsed as YY and startYear is YYYY, make sure endYear is StartYear + 1
+                       if (endYear !== startYear + 1 && startYear > 1000 && part2 < 100) {
+                            endYear = startYear + 1; // Assume YYYY-YY always means YYYY to YYYY+1
+                       }
+                 }
+
+            } else { console.warn(`Could not parse academic year parts as numbers: ${academicYearRaw}`); }
+        } else { console.warn(`Academic year format not recognized or missing: ${academicYearRaw}`); }
+    } else { console.warn(`Academic year is missing or empty.`); }
+
+
+    // Determine tense based on parsed years and current date
+    if (!isNaN(startYear) && !isNaN(endYear)) {
+        if (currentYear >= startYear && currentYear < endYear) {
+             isPresentTense = true; // Currently within the academic year (e.g., 2023-2024, current year is 2023)
+        } else if (currentYear === endYear) {
+             // If it's the end year, check if the current month is before or in April (0-indexed month 3)
+             isPresentTense = (currentMonthIndex <= academicYearEndMonth);
+        } else if (currentYear > endYear) {
+            isPresentTense = false; // Past academic year
+        } else if (currentYear < startYear) {
+             isPresentTense = true; // Future academic year? Assume present for now.
+        }
+    } else {
+        isPresentTense = true; // Default to present if parsing failed
+    }
+
+
+    const verbG = isPresentTense ? "અભ્યાસ કરે છે" : "અભ્યાસ કરતા હતા";
+    const verbE = isPresentTense ? "is studying" : "was studying";
+    const articleE = isPresentTense ? "is" : "was";
+    const statusG = isPresentTense ? 'છે' : 'હતા';
+    const statusE = isPresentTense ? 'is' : 'was';
+
+    const gujCert = `
+      <div class="certificate">
+         <div class="photo-box">વિદ્યાર્થીનો<br>ફોટો ચોંટાડો</div>
+         <div class="cert-header">
+            <h3 style="text-align: center; margin-bottom: 25px; font-weight: bold;font-size: 40px;"><u>બોનાફાઈડ પ્રમાણપત્ર</u></h3>
+            <p style="font-weight: bold;text-align: right; ">શાળા: ${schoolNameGuj}</p>
+            <p style="margin-bottom: 20px;text-align: right">તા. ${talukaNameGuj}, જી. ${districtNameGuj}</p>
+         </div>
+         <div class="cert-details">
+            <p style="text-indent: 40px;">આથી પ્રમાણિત કરવામાં આવે છે કે ${gujP ? gujP + ' ' : ''}<span class="placeholder">${nameGuj} (${nameEng})</span> એ શાળા <span class="placeholder">${schoolNameGuj}</span> (તા.<span class="placeholder">${talukaNameGuj}</span>, જી.<span class="placeholder">${districtNameGuj}</span>) માં શૈક્ષણિક વર્ષ <span class="placeholder">${academicYearRaw}</span> દરમિયાન ધોરણ <span class="placeholder">${standard}</span> માં નિયમિત વિદ્યાર્થી તરીકે ${verbG}. ${possG} જન્મ તારીખ શાળાના જનરલ રજીસ્ટર નંબર (G.R. no.) : <span class="placeholder">${grNo}</span> મુજબ <span class="placeholder">${dobFormatted}</span> (શબ્દોમાં: <span class="placeholder">${dobWordsGuj}</span>) છે.</p>
+            <p>${possM} ધર્મ <span class="placeholder">${religionGuj}</span> અને પેટાજાતિ <span class="placeholder">${subcasteGuj}</span> છે. ${proG} આ શાળાના એક સારા ચારિત્ર્યવાન અને શિસ્તબદ્ધ વિદ્યાર્થી ${statusG}. અમે ${possG} ઉજ્જવળ શૈક્ષણિક કારકિર્દી માટે શુભેચ્છા પાઠવીએ છીએ.</p>
+         </div>
+         <div class="cert-footer"><p style="font-weight: bold;">સ્થળ: ${talukaNameGuj}<br>Date: ${formattedCurrentDate}</p></div><br>
+         <div class="signature-box"><div></div><p>______________________</p><p><strong>આચાર્યની સહી અને સિક્કો</strong></p></div>
+      </div>`;
+
+    const engCert = `
+      <div class="certificate">
+         <div class="photo-box">Paste Student's<br>Photo Here</div>
+         <div class="cert-header">
+             <h3 style="text-align: center; margin-bottom: 25px; font-weight: bold;font-size: 25px;"><u>BONAFIDE CERTIFICATE</u></h3>
+            <p style="font-weight: bold;text-align: right;">${schoolNameEng}</p><p style="margin-bottom: 20px;text-align: right">Tal. ${talukaNameEng}, Dist. ${districtNameEng}</p>
+         </div>
+         <div class="cert-details">
+            <p style="text-indent: 40px;">
+                 This is to certify that ${engP ? engP + ' ' : ''}<span class="placeholder">${nameEng} (${nameGuj})</span> ${articleE} a bonafide student of this school, <span class="placeholder">${schoolNameEng}</span> (Taluka: <span class="placeholder">${talukaNameEng}</span>, District: <span class="placeholder">${districtNameEng}</span>), who ${verbE} in Standard <span class="placeholder">${standard}</span> during the academic year <span class="placeholder">${academicYearRaw}</span>. As per the school's General Register No. (G.R. No.) : <span class="placeholder">${grNo}</span>, ${possE.toLowerCase()} date of birth is <span class="placeholder">${dobFormatted}</span> (in words: <span class="placeholder">${dobWordsEng}</span>).</p>
+            <p>${proE} belongs to the <span class="placeholder">${religionEng}</span> religion and <span class="placeholder">${subcasteEng}</span> sub-caste. ${proE} ${statusE} known to bear a good moral character and ${statusE} disciplined. We wish ${possE.toLowerCase()} a bright academic future.</p>
+         </div>
+         <div class="cert-footer"><p style="font-weight: bold;">Place: ${talukaNameEng}<br>Date: ${formattedCurrentDate}</p></div><br>
+         <div class="signature-box"><div></div><p>_________________________________</p><p><strong>Principal's Signature and Seal</strong></p></div>
+      </div>`;
+
+    return gujCert + engCert;
+  }
+    
+
+  // --- Function to Save as PDF (Stable Version) ---
+ async function saveAsPDF() {
+    if (!schoolInfo) { alert("શાળાની માહિતી લોડ થઈ નથી. PDF બનાવી શકાશે નહીં."); return; }
+    const certificates = document.querySelectorAll('#output .certificate');
+    if (certificates.length === 0) { alert("કોઈ પ્રમાણપત્ર જનરેટ થયેલ નથી."); return; }
+
+    const selectedIndex = document.getElementById('studentSelect').value;
+    const student = selectedIndex !== "" ? students[selectedIndex] : null;
+    const filenameBase = student ? (student.nameEng || student.nameGuj || 'Student') : 'Bonafide_Certificate';
+     // Clean filename base to be safe for file names
+    const cleanedFilenameBase = filenameBase.replace(/[^\p{L}\p{N}\s-]/gu, '').trim().replace(/\s+/g, '_');
+    const filename = `Bonafide_${cleanedFilenameBase}.pdf`;
+
+    const pdfSaveButton = document.getElementById('pdfButton');
+    const printButton = document.querySelector('button[onclick="window.print()"]'); // Get the print button
+    pdfSaveButton.disabled = true;
+    if(printButton) printButton.disabled = true; // Disable print button too
+
+    showProgress('PDF જનરેટ થઇ રહી છે...'); // Show progress indicator
+
+    const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+    const margin = 10; // PDF margin
+    const contentWidth = pdfWidth - (margin * 2);
+    const contentHeight = pdfHeight - (margin * 2);
+
+    try {
+        for (let i = 0; i < certificates.length; i++) {
+            updateProgress(i, certificates.length); // Update progress percentage
+
+            const certificateElement = certificates[i];
+            const originalBorder = certificateElement.style.border; // Save original border
+            // certificateElement.style.border = 'none'; // Optional: Hide border during capture if needed
+
+             // Force display block and minimal margins for capture consistency
+            certificateElement.style.display = 'block';
+            certificateElement.style.margin = '0';
+            certificateElement.style.boxShadow = 'none';
+
+
+             // Wait for potential repaints after style changes
+             await new Promise(resolve => requestAnimationFrame(resolve));
+
+
+             const canvas = await html2canvas(certificateElement, {
+                 scale: 3, // Higher scale for better quality PDF
+                 useCORS: true,
+                 logging: false, // Set to true for debugging html2canvas issues
+                 width: certificateElement.offsetWidth, // Capture the actual rendered width
+                 height: certificateElement.offsetHeight, // Capture the actual rendered height
+                 windowWidth: document.documentElement.offsetWidth, // Ensure viewport is wide enough
+                 windowHeight: document.documentElement.offsetHeight,
+                 scrollX: -window.scrollX, // Account for window scroll position
+                 scrollY: -window.scrollY,
+                  backgroundColor: '#ffffff', // Explicitly set background to white
+                 // foreignObjectRendering: true, // Set to true if you have complex SVGs or foreignObject
+                 removeContainer: true // Clean up temporary container used by html2canvas
+             });
+
+             // Restore original styles
+            certificateElement.style.border = originalBorder;
+            certificateElement.style.margin = '10px auto';
+             certificateElement.style.boxShadow = '0 0 10px rgba(0,0,0,0.1)';
+
+
+            const imgData = canvas.toDataURL('image/png', 1.0); // Get image data as PNG
+            const imgProps = pdf.getImageProperties(imgData);
+            const imgRatio = imgProps.width / imgProps.height;
+
+            let finalImgWidth, finalImgHeight;
+            // Calculate dimensions to fit within the PDF content area while maintaining aspect ratio
+            const contentRatio = contentWidth / contentHeight;
+
+             if (imgRatio > contentRatio) {
+                 // Image is wider than the content area aspect ratio, scale based on width
+                 finalImgWidth = contentWidth;
+                 finalImgHeight = contentWidth / imgRatio;
+             } else {
+                 // Image is taller than or equal to the content area aspect ratio, scale based on height
+                 finalImgHeight = contentHeight;
+                 finalImgWidth = contentHeight * imgRatio;
+             }
+
+             // Ensure image doesn't exceed content dimensions even after ratio calculations (safety check)
+             finalImgWidth = Math.min(finalImgWidth, contentWidth);
+             finalImgHeight = Math.min(finalImgHeight, contentHeight);
+
+
+            // Calculate position to center the image on the PDF page within the margins
+            const xPos = margin + (contentWidth - finalImgWidth) / 2;
+            const yPos = margin + (contentHeight - finalImgHeight) / 2;
+
+            if (i > 0) pdf.addPage(); // Add a new page for subsequent certificates
+            pdf.addImage(imgData, 'PNG', xPos, yPos, finalImgWidth, finalImgHeight, undefined, 'FAST'); // Add image to PDF
+
+            // Add a small delay between pages to prevent potential rendering issues
+             await new Promise(resolve => setTimeout(resolve, 50));
+        }
+
+        updateProgress(certificates.length, certificates.length); // Ensure 100%
+        pdf.save(filename); // Save the PDF
+
+    } catch (error) {
+         console.error("Error generating PDF:", error);
+         alert(`PDF જનરેટ કરવામાં ભૂલ આવી.\n${error.message}`);
+    } finally {
+        hideProgress(); // Hide progress indicator
+        pdfSaveButton.disabled = false;
+        if(printButton) printButton.disabled = false; // Re-enable print button
+    }
+ }
+
+  </script>
+</body>
+</html>
